@@ -1,486 +1,135 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Calculadora de Productividad Pro</title>
-    <link rel="icon" type="image/x-icon" href="images/Logo html.png">
-    <style>
-        :root {
-            --primary: #00b7ff;
-            --success: #4CAF50;
-            --warning: #FF9800;
-            --danger: #be0000;
-            --background: #f0f3f5;
-            --text: #2c3e50;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: var(--background);
-            min-height: 100vh;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .glass-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            width: 100%;
-            max-width: 1200px;
-            margin: 1rem;
-        }
-
-        .title-container {
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            padding: 2rem;
-            background: linear-gradient(135deg, #ffffff, #f8f9fa);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .title-container h1 {
-            font-size: 2.5rem;
-            color: var(--text);
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .controls-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 8px rgba(0, 183, 255, 0.2);
-            outline: none;
-        }
-
-        .button-group {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        button {
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .btn-primary {
-            background: var(--success);
-            color: white;
-        }
-
-        .btn-warning {
-            background: var(--warning);
-            color: white;
-        }
-
-        .btn-danger {
-            background: var(--danger);
-            color: white;
-        }
-
-        .btn-active {
-            background: var(--primary) !important;
-            transform: scale(0.98);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-        }
-
-        .timer-container {
-            background: linear-gradient(135deg, #1a2b3c, #2c3e50);
-            border-radius: 15px;
-            padding: 2rem;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timer-display {
-            font-size: 4.5rem;
-            font-family: monospace;
-            letter-spacing: 4px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
-            position: relative;
-            z-index: 2;
-        }
-
-        .timer-overlay {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, 
-                transparent 25%, 
-                rgba(255,255,255,0.1) 50%, 
-                transparent 75%);
-            animation: shine 3s infinite;
-            z-index: 1;
-        }
-
-        .results-section {
-            margin-top: 2rem;
-            background: rgba(255,255,255,0.9);
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .session-card {
-            background: white;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--success);
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-
-        .session-card:hover {
-            transform: translateX(10px);
-        }
-
-        @keyframes shine {
-            0% { transform: translate(-50%, -50%) rotate(45deg); }
-            100% { transform: translate(50%, 50%) rotate(45deg); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .alert-effect {
-            animation: pulse 1s infinite, shine 3s infinite;
-            color: #ff4444 !important;
-        }
-
-        
-    </style>    
+  <meta charset="UTF-8">
+  <title>Calculadora de Productividad Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="images/Logo html.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="glass-container">
-        <div class="title-container">
-            <h1>⏱️ Calculadora de Productividad Pro</h1>
-        </div>
+  <div class="glass-container">
 
-        <div class="main-grid">
-            <div class="controls-panel">
-                <input type="text" id="workerName" placeholder="👤 Nombre del trabajador">
-                <select id="task">
-                    <option value="Recepción APP">📦 Recepción APP</option>
-                    <option value="Recepción FTW">👔 Recepción FTW</option>
-                    <option value="Recepción HDW">🖥️ Recepción HDW</option>
-                    <option value="Alarmado y Perchado">🚨 Alarmado y Perchado</option>
-                    <option value="Planchado y estándares">👚 Planchado</option>
-                    <option value="Reposición desde Stock">📦 Reposición</option>
-                </select>
-
-                <input type="number" id="pieces" placeholder="🔢 Piezas requeridas">
-                <input type="number" id="goal" placeholder="🎯 Meta por hora">
-
-                <div class="button-group">
-                    <button class="btn-primary" onclick="calculate()">📅 Calcular Tiempo</button>
-                    <button class="btn-primary" id="startBtn" onclick="startTimer()">▶ Iniciar</button>
-                    <button class="btn-warning" id="pauseBtn" onclick="pauseTimer()">⏸ Pausar</button>
-                    <button class="btn-danger" onclick="resetTimer()">⏹ Reiniciar</button>
-                    <button class="btn-primary" onclick="showHistory()">📜 Ver Historial</button>
-                    <button class="btn-danger" onclick="clearHistory()">🗑️ Borrar Historial</button>
-                </div>
-
-                <div class="results-section" id="result">
-                    <h3>📊 Resultados en Tiempo Real</h3>
-                    <div id="sessionDetails"></div>
-                </div>
-            </div>
-
-            <div class="timer-container">
-                <div class="timer-overlay"></div>
-                <div class="timer-display" id="timer">00:00:00</div>
-                <button class="btn-primary" onclick="exportToCSV()" style="margin-top: 1.5rem;">📥 Exportar CSV</button>
-            </div>
-        </div>
+    <!-- Título y botón de ayuda 📊 -->
+    <div class="title-container adidas-style">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="margin: 0;">
+          <img src="images/Logo html.png" alt="Adidas Logo" class="adidas-logo">
+          CALCULADORA DE PRODUCTIVIDAD PRO
+        </h1>
+        <button id="helpBtn" title="Ver metas por tarea">📊</button>
+      </div>
     </div>
 
-    <script>
-        let sessions = [];
-        let currentSession = {};
-        let startTime = 0;
-        let pausedTime = 0;
-        let timerInterval;
-        let isRunning = false;
-        let isPaused = false;
-        let estimatedTime = 0;
-
-        function calculate() {
-            const pieces = parseFloat(document.getElementById('pieces').value);
-            const goal = parseFloat(document.getElementById('goal').value);
-            
-            if (isNaN(pieces) || isNaN(goal) || goal <= 0) {
-                showAlert('⚠️ Ingresa valores válidos!', 'danger');
-                return;
-            }
-            
-            estimatedTime = (pieces / goal) * 60;
-            const hours = Math.floor(estimatedTime / 60);
-            const minutes = Math.floor(estimatedTime % 60);
-            
-            document.getElementById('result').innerHTML = `
-                <h3>📊 Resultados en Tiempo Real</h3>
-                <div class="session-card">
-                    <span>⏳ Tiempo estimado:</span>
-                    <div class="time-display">
-                        ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m
-                    </div>
-                    <small>${pieces} piezas / ${goal} por hora</small>
-                </div>
-            `;
-        }
-
-        function startTimer() {
-            if (!isRunning) {
-                const workerName = document.getElementById('workerName').value || 'Anónimo';
-                currentSession = {
-                    name: workerName,
-                    startTime: new Date(),
-                    endTime: null,
-                    estimatedTime: estimatedTime,
-                    actualTime: 0
-                };
-
-                startTime = isPaused ? Date.now() - pausedTime : Date.now();
-                isRunning = true;
-                isPaused = false;
-                
-                timerInterval = setInterval(updateTimer, 1000);
-                document.getElementById('startBtn').textContent = '⏯ Reanudar';
-                document.getElementById('startBtn').classList.add('btn-active');
-                document.getElementById('pauseBtn').classList.remove('btn-active');
-            }
-        }
-
-        function pauseTimer() {
-    if (isRunning) {
-        clearInterval(timerInterval);
-        currentSession.endTime = new Date();
-        currentSession.actualTime = (Date.now() - startTime) / 1000 / 60; // en minutos
-        sessions.push(currentSession);
-        updateSessionDetails();
-
-        // Guardar en localStorage
-        const history = JSON.parse(localStorage.getItem('history') || '[]');
-history.push({
-    date: new Date().toLocaleString(),
-    task: currentSession.name,
-    pieces: document.getElementById('pieces').value,
-    goal: document.getElementById('goal').value
-});
-localStorage.setItem('history', JSON.stringify(history));
-
-        isRunning = false;
-        isPaused = true;
-        pausedTime = Date.now() - startTime;
-
-        document.getElementById('pauseBtn').textContent = '⏸ Pausado';
-        document.getElementById('startBtn').classList.remove('btn-active');
-        document.getElementById('pauseBtn').classList.add('btn-active');
-    }
-}
-
-        function resetTimer() {
-            clearInterval(timerInterval);
-            isRunning = false;
-            isPaused = false;
-            startTime = 0;
-            pausedTime = 0;
-            estimatedTime = 0;
-            
-            document.getElementById('timer').textContent = '00:00:00';
-            document.getElementById('result').innerHTML = '<h3>📊 Resultados en Tiempo Real</h3>';
-            document.querySelectorAll('button').forEach(btn => btn.classList.remove('btn-active'));
-            document.querySelector('.timer-container').classList.remove('timer-alert');
-            document.querySelector('.timer-container').style.boxShadow = '';
-
-            sessions = [];
-            updateSessionDetails();
-        }
-
-        function updateTimer() {
-    const elapsed = Date.now() - startTime;
-    const formattedTime = new Date(elapsed).toISOString().substr(11, 8);
-    const timerElement = document.getElementById('timer');
-    
-    timerElement.textContent = formattedTime;
-    
-    if (estimatedTime > 0) {
-        const remainingTime = estimatedTime * 60 * 1000 - elapsed;
-        const timerContainer = document.querySelector('.timer-container');
-
-        // Activar alerta solo en el último segundo
-        if (remainingTime <= 60000 && remainingTime > 0) { // 60,000 ms = 1 minuto
-            timerContainer.classList.add('timer-alert');
-        } else {
-            timerContainer.classList.remove('timer-alert');
-        }
-
-        // Meta alcanzada
-        if (elapsed / 1000 / 60 >= estimatedTime) {
-    timerContainer.classList.remove('timer-alert'); // Quitamos alerta amarilla (si estaba)
-    
-    timerContainer.classList.add('alert-effect');   // Activamos animación alerta roja
-    
-    timerContainer.style.boxShadow = '0 0 20px rgba(76, 175, 80, 0.5)'; // Brillo verde
-    
-    setTimeout(() => {
-        timerContainer.style.boxShadow = '';
-    }, 2000);
-} else {
-    timerContainer.classList.remove('alert-effect');
-        }
-    }
-}
-
-        function updateSessionDetails() {
-            const detailsDiv = document.getElementById('sessionDetails');
-            detailsDiv.innerHTML = sessions.map((session, index) => `
-                <div class="session-card">
-                    <h4>🧑💼 ${session.name} - Sesión ${index + 1}</h4>
-                    <p>⏱️ Real: ${session.actualTime.toFixed(1)} min</p>
-                    <p>📈 Productividad: ${((session.estimatedTime / session.actualTime) * 100).toFixed(1)}%</p>
-                    <small>${session.startTime.toLocaleTimeString()} - ${session.endTime.toLocaleTimeString()}</small>
-                </div>
-            `).join('');
-        }
-
-        function showHistory() {
-    const history = JSON.parse(localStorage.getItem('history') || '[]');
-    const historyContainer = document.getElementById('historyContainer');
-    
-    if (!historyContainer) {
-        const container = document.createElement('div');
-        container.id = 'historyContainer';
-        container.style.marginTop = '20px';
-        document.getElementById('result').appendChild(container);
-    }
-
-    const content = history.reverse().map(entry => `
-        <div class="session-card">
-            <div class="history-header">
-                <span>📅 ${entry.date}</span>
-                <span>🧑💼 ${entry.task}</span>
-            </div>
-            <div class="history-details">
-                <div>
-                    <span>📦 Piezas</span>
-                    <span class="highlight">${entry.pieces}</span>
-                </div>
-                <div>
-                    <span>🎯 Meta/h</span>
-                    <span class="highlight">${entry.goal}</span>
-                </div>
-            </div>
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+          <span id="closeModal" class="close">&times;</span>
+          <h2>🎯 Metas por Tarea</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Tarea</th>
+                <th>Meta (pzas/h)</th>
+                <th>Tiempo por unidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>📦 Recepción APP</td><td>250</td><td>~14-15 seg</td></tr>
+              <tr><td>👔 Recepción FTW</td><td>180</td><td>~20 seg</td></tr>
+              <tr><td>🖥️ Recepción HDW</td><td>200</td><td>~18 seg</td></tr>
+              <tr><td>🚨 Alarmado y Perchado</td><td>160</td><td>~22.5 seg</td></tr>
+              <tr><td>👚 Planchado</td><td>100</td><td>~36 seg</td></tr>
+              <tr><td>🔁 Reposición</td><td>120</td><td>~30 seg</td></tr>
+            </tbody>
+          </table>
         </div>
-    `).join('');
+      </div>
+      
+    <!-- Contenido principal -->
+    <div class="main-grid">
 
-    document.getElementById('historyContainer').innerHTML = `
-        <h4 style="margin-bottom: 15px;">📚 Historial Registrado</h4>
-        ${content || '<p>No hay registros históricos</p>'}
-    `;
-}
+      <!-- Panel de controles -->
+      <div class="controls-panel">
+        <input type="text" id="workerName" placeholder="👤 Nombre del trabajador">
+        <select id="task">
+          <option value="Recepción APP">📦 Recepción APP</option>
+          <option value="Recepción FTW">👔 Recepción FTW</option>
+          <option value="Recepción HDW">🖥️ Recepción HDW</option>
+          <option value="Alarmado y Perchado">🚨 Alarmado y Perchado</option>
+          <option value="Planchado y estándares">👚 Planchado</option>
+          <option value="Reposición desde Stock">📦 Reposición</option>
+        </select>
 
-        function exportToCSV() {
-            const csvContent = [
-                ['Nombre', 'Inicio', 'Fin', 'Tiempo Estimado (min)', 'Tiempo Real (min)', 'Productividad %'],
-                ...sessions.map(session => [
-                    session.name,
-                    session.startTime.toISOString(),
-                    session.endTime.toISOString(),
-                    session.estimatedTime,
-                    session.actualTime.toFixed(2),
-                    ((session.estimatedTime / session.actualTime) * 100).toFixed(1)
-                ])
-            ].join('\n');
+        <input type="number" id="pieces" placeholder="🔢 Piezas requeridas">
+        <input type="number" id="goal" placeholder="🎯 Meta por hora">
 
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'productividad.csv';
-            a.click();
-        }
+        <div style="text-align: center; margin-bottom: 1rem;">
+          <button id="toggleBtn" class="btn-primary" onclick="toggleTimer()">▶ Iniciar</button>
+        </div>
 
-        function showAlert(message, type) {
-            const alert = document.createElement('div');
-            alert.className = `alert-effect session-card`;
-            alert.textContent = message;
-            document.getElementById('result').appendChild(alert);
-            
-            setTimeout(() => {
-                alert.remove();
-            }, 3000);
-        }
+        <div class="button-group">
+          <button class="btn-info" onclick="calculate()">📅 Calcular Tiempo</button>
+          <button class="btn-warning" onclick="resetTimer()">⏹ Reiniciar</button>
+          <button class="btn-secondary" onclick="showHistory()">📜 Ver Historial</button>
+          <button class="btn-danger" onclick="clearHistory()">🗑️ Borrar Historial</button>
+          <button class="btn-success" onclick="exportToCSV()">📥 Exportar CSV</button>
+        </div>
 
-        function clearHistory() {
-            if (confirm("¿Borrar todo el historial?")) {
-                localStorage.removeItem('history');
-                document.getElementById('result').innerHTML = '<h3>📊 Resultados en Tiempo Real</h3>';
-            }
-        }
-    </script>
+        <div class="results-section" id="result">
+          <h3>📊 Resultado Del Calculo</h3>
+          <div id="sessionDetails"></div>
+        </div>
+      </div>
+
+      <!-- Cronómetro y evaluación -->
+      <div class="timer-container">
+        <div class="timer-box">
+          <div class="timer-display" id="timer">00:00:00</div>
+        </div>
+
+        <div id="productivityEvaluation" style="display: none; margin-top: 2rem;">
+          <label for="actualPieces" style="color: white; font-weight: 500;">🛠️ Piezas completadas realmente:</label>
+          <input 
+            type="number" 
+            id="actualPieces" 
+            placeholder="Ej: 160" 
+            style="padding: 0.6rem; width: 100%; border-radius: 10px; margin-top: 0.5rem; border: none;">
+        
+          <button class="btn-info" style="margin-top: 1rem;" onclick="evaluarProductividad()">📊 Evaluar Productividad</button>
+        
+          <div id="evaluacionResultado" style="margin-top: 1rem; color: white;"></div>
+        </div>
+      </div>
+
+    </div> <!-- Fin main-grid -->
+  </div> <!-- Fin glass-container -->
+
+  <!-- Modal de ayuda -->
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>🎯 Metas por Tarea</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tarea</th>
+            <th>Meta (pzas/h)</th>
+            <th>Tiempo por unidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>📦 Recepción APP</td><td>250</td><td>~14-15 seg</td></tr>
+          <tr><td>👔 Recepción FTW</td><td>180</td><td>~20 seg</td></tr>
+          <tr><td>🖥️ Recepción HDW</td><td>200</td><td>~18 seg</td></tr>
+          <tr><td>🚨 Alarmado y Perchado</td><td>160</td><td>~22.5 seg</td></tr>
+          <tr><td>👚 Planchado</td><td>100</td><td>~36 seg</td></tr>
+          <tr><td>🔁 Reposición</td><td>120</td><td>~30 seg</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Script JS -->
+  <script src="script.js"></script>
 </body>
 </html>
